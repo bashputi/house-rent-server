@@ -20,8 +20,13 @@ serverApi: {
 
 async function run() {
 try {
+    const rentCollection = client.db('RentDB').collection('rents');
 
-
+    app.post('/rents', async(req, res) => {
+        const taskitem = req.body;
+        const result = await rentCollection.insertOne(taskitem);
+        res.send(result);
+      })
 
 
 // await client.connect();
